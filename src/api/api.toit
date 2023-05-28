@@ -36,10 +36,10 @@ class I2CServiceClient extends services.ServiceClient
     assert: selector.matches SELECTOR
     super selector
   open address/int -> none:
-    invoke_ I2CService.OPEN_INDEX address
+    invoke_ I2CService.OPEN_INDEX [address]
 
   close address/int -> none:
-    invoke_ I2CService.CLOSE_INDEX address
+    invoke_ I2CService.CLOSE_INDEX [address]
     
   read address/int count/int -> ByteArray:
     return invoke_ I2CService.READ_INDEX [address, count]
