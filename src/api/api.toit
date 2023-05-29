@@ -39,6 +39,7 @@ class i2cDevice extends services.ServiceClient
   constructor  .address selector/services.ServiceSelector=SELECTOR:
     assert: selector.matches SELECTOR
     super selector
+    this.open
     connect_ address
 
   connect_ address/int -> none:

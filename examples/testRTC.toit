@@ -13,9 +13,11 @@ main:
   ds1307 := i2cDevice address
   
  
-  print (ds1307.read_reg  8 1)
-  ds1307.write  #[8, 10]
-  print (ds1307.read_reg  8 1)
+  print (ds1307.read_reg  9 1)
+  ds1307.write  #[9, 10]
+  print (ds1307.read_reg  9 1)
+  print "disconnecting"
   ds1307.disconnect 
+  print "closing"
   ds1307.close
 

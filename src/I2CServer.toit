@@ -20,7 +20,8 @@ class I2CServiceProvider extends ServiceProvider
     if index == I2CService.DISCONNECT_INDEX: return disconnect arguments[0]
     if index == I2CService.READ_INDEX: return read arguments[0] arguments[1]
     if index == I2CService.WRITE_INDEX: return write arguments[0] arguments[1]
-    if index == I2CService.READ_REG_INDEX: return read_reg arguments[0] arguments[1] arguments[2]    
+    if index == I2CService.READ_REG_INDEX: return read_reg arguments[0] arguments[1] arguments[2]
+    if index == I2CService.READ_ADDRESS_INDEX: return read_address arguments[0] arguments[1] arguments[2]
     unreachable
 
 
@@ -34,7 +35,7 @@ class I2CServiceProvider extends ServiceProvider
     i2cDevices[address] = i2cBus.device address
 
   disconnect address/int:
-    i2cDevices[address].remove
+    i2cDevices.remove address
     if i2cDevices.is_empty: i2cBus.close
 
   read address/int count/int -> ByteArray:
@@ -44,4 +45,7 @@ class I2CServiceProvider extends ServiceProvider
     return i2cDevices[address].write data
 
   read_reg address/int register/int count/int -> ByteArray:
-    return i2cDevices[address].read_reg register count 
+    return i2cDevices[address].read_reg register count
+
+  read_address address/int address1/ByteArray count/int -> ByteArray:
+    return i2cDevices[address].read_address address1 count
