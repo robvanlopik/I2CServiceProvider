@@ -16,8 +16,8 @@ class I2CServiceProvider extends ServiceProvider
     provides I2CService.SELECTOR --handler=this
 
   handle index/int arguments/any --gid/int --client/int -> any:
-    if index == I2CService.OPEN_INDEX: return open arguments[0]
-    if index == I2CService.CLOSE_INDEX: return close arguments[0]
+    if index == I2CService.OPEN_INDEX: return connect arguments[0]
+    if index == I2CService.CLOSE_INDEX: return disconnect arguments[0]
     if index == I2CService.READ_INDEX: return read arguments[0] arguments[1]
     if index == I2CService.WRITE_INDEX: return write arguments[0] arguments[1]
     if index == I2CService.READ_REG_INDEX: return read_reg arguments[0] arguments[1] arguments[2]    
@@ -25,7 +25,7 @@ class I2CServiceProvider extends ServiceProvider
 
 
 
-  open address/int:
+  connect address/int:
     if i2cDevices.is_empty:
       i2cBus = i2c.Bus
          --sda=gpio.Pin 21
@@ -33,7 +33,7 @@ class I2CServiceProvider extends ServiceProvider
     if i2cDevices.contains address: return // probably from a previous run of the client container
     i2cDevices[address] = i2cBus.device address
 
-  close address/int:
+  disconnect address/int:
     i2cDevices[address].remove
     if i2cDevices.is_empty: i2cBus.close
 
