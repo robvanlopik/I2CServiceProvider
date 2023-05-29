@@ -11,10 +11,10 @@ interface I2CService:
       --minor=0
 
   connect address/int -> none
-  static OPEN_INDEX ::= 0
+  static CONNECT_INDEX ::= 0
 
   disconnect address/int -> none
-  static CLOSE_INDEX ::= 1
+  static DISCONNECT_INDEX ::= 1
 
   read address/int count/int -> ByteArray
   static READ_INDEX ::= 2
@@ -37,10 +37,10 @@ class I2CServiceClient extends services.ServiceClient
     super selector
 
   connect address/int -> none:
-    invoke_ I2CService.OPEN_INDEX [address]
+    invoke_ I2CService.CONNECT_INDEX [address]
 
   disconnect address/int -> none:
-    invoke_ I2CService.CLOSE_INDEX [address]
+    invoke_ I2CService.DISCONNECT_INDEX [address]
     
   read address/int count/int -> ByteArray:
     return invoke_ I2CService.READ_INDEX [address, count]

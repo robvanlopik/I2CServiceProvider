@@ -16,8 +16,8 @@ class I2CServiceProvider extends ServiceProvider
     provides I2CService.SELECTOR --handler=this
 
   handle index/int arguments/any --gid/int --client/int -> any:
-    if index == I2CService.OPEN_INDEX: return connect arguments[0]
-    if index == I2CService.CLOSE_INDEX: return disconnect arguments[0]
+    if index == I2CService.CONNECT_INDEX: return connect arguments[0]
+    if index == I2CService.DISCONNECT_INDEX: return disconnect arguments[0]
     if index == I2CService.READ_INDEX: return read arguments[0] arguments[1]
     if index == I2CService.WRITE_INDEX: return write arguments[0] arguments[1]
     if index == I2CService.READ_REG_INDEX: return read_reg arguments[0] arguments[1] arguments[2]    
