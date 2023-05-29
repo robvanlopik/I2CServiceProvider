@@ -10,12 +10,12 @@ address := 104 // 16r68
 
 main:
 
-  bus := I2CServiceClient
-  bus.open
-  bus.connect address
-  print (bus.read_reg address 8 1)
-  bus.write address #[8, 10]
-  print (bus.read_reg address 8 1)
-  bus.disconnect address
-  bus.close
+  ds1307 := i2cDevice address
+  
+ 
+  print (ds1307.read_reg  8 1)
+  ds1307.write  #[8, 10]
+  print (ds1307.read_reg  8 1)
+  ds1307.disconnect 
+  ds1307.close
 
