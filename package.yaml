@@ -1,1 +1,4 @@
-# Toit Package File.
+dependencies:
+  bme280:
+    url: github.com/toitware/bme280-driver
+    version: ^1.0.0

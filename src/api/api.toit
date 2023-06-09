@@ -22,7 +22,7 @@ interface I2CService:
   read_reg address/int register/int count/int -> ByteArray
   static READ_REG_INDEX ::= 3
 
-  write address nytes/ByteArray
+  write address bytes/ByteArray
   static WRITE_INDEX ::= 4
 
   // ------------------------------------------------------
