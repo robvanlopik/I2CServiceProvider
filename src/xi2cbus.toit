@@ -20,13 +20,22 @@ class XI2CBus:
 
 class XI2CDevice implements serial.Device:
   i2c_address/int :=?
-  registers/XRegisters? :=null
+  registers_/XRegisters? :=null
   i2cTransport/XI2CBus :=?
   i2c_/I2CServiceClient := ?
 
   constructor  .i2cTransport .i2c_address:
     i2cTransport.connect i2c_address
     i2c_ = i2cTransport.i2cClient
+
+/**
+  See $serial.Device.registers.
+
+  Always returns the same object.
+  */
+  registers -> serial.Registers:
+    if not registers_: registers_= XRegisters this
+    return registers_
 
 // 
 // i2c methods for dXI2CDevice
