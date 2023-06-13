@@ -2,3 +2,5 @@ dependencies:
   bme280:
     url: github.com/toitware/bme280-driver
     version: ^1.0.0
+  sht31:
+    path: ../sht31
